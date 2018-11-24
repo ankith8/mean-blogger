@@ -6,7 +6,7 @@ const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
 const path = require("path");
 
-mongoose.connect('mongodb+srv://ankith:mlqmu2bOOiBQ1ddc@cluster0-scr7v.mongodb.net/node-angular')
+mongoose.connect('mongodb+srv://ankith:'+process.env.MONGO_ATLAS_PW+'@cluster0-scr7v.mongodb.net/node-angular')
   .then(() => {
     console.log('Connected to database!!')
   })
@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://ankith:mlqmu2bOOiBQ1ddc@cluster0-scr7v.mongodb.n
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended : false }));
 app.use("/images", express.static(path.join('backend/images')));
 
 app.use((req, res, next) => {
